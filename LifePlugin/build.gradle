@@ -1,0 +1,27 @@
+apply plugin: 'groovy'
+apply plugin: 'maven'
+
+
+dependencies {
+    implementation 'com.android.tools.build:transform-api:1.5.0'
+    implementation gradleApi()
+    implementation localGroovy()
+    implementation 'com.android.tools.build:gradle:4.0.2'
+    implementation 'org.ow2.asm:asm:8.0.1'
+}
+
+compileGroovy {
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+}
+
+uploadArchives{
+    repositories {
+        mavenDeployer{
+            pom.groupId = 'com.dsg.life'
+            pom.artifactId = 'lifeCyclePlugin'
+            pom.version = "1.0.0"
+            repository(url:uri('../release'))
+        }
+    }
+}
